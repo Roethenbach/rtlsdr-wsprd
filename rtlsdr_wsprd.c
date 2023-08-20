@@ -434,27 +434,12 @@ void postSpots(uint32_t n_results) {
     }
 }
 
-
 void printSpots(uint32_t n_results) {
     if (n_results == 0) {
-        printf("No spot %04d-%02d-%02d %02d:%02dz\n",
-               rx_state.gtm->tm_year + 1900,
-               rx_state.gtm->tm_mon + 1,
-               rx_state.gtm->tm_mday,
-               rx_state.gtm->tm_hour,
-               rx_state.gtm->tm_min);
-
         return;
     }
-
     for (uint32_t i = 0; i < n_results; i++) {
-        printf("Spot :  %04d-%02d-%02d %02d:%02d:%02d %6.2f %6.2f %10.6f %2d %7s %6s %2s\n",
-               rx_state.gtm->tm_year + 1900,
-               rx_state.gtm->tm_mon + 1,
-               rx_state.gtm->tm_mday,
-               rx_state.gtm->tm_hour,
-               rx_state.gtm->tm_min,
-               rx_state.gtm->tm_sec,
+        printf("WSPR;%f;%f;%f;%d;%s;%s;%s\n",
                dec_results[i].snr,
                dec_results[i].dt,
                dec_results[i].freq,
@@ -463,6 +448,7 @@ void printSpots(uint32_t n_results) {
                dec_results[i].loc,
                dec_results[i].pwr);
     }
+    fflush(stdout);
 }
 
 
